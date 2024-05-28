@@ -9,7 +9,16 @@
 </head>
 
 <body>
-    <h1>Hello Laravel</h1>
+    
+    @foreach ($items as $item)
+        <h1>{{$item->name}}</h1>
+        <p>{{$item->type}}</p>
+        <p>{{$item->category}}</p>
+        <p>{{$item->weight}}</p>
+        <p>{{$item->cost}}</p>
+        <p>{{$item->damage_dice}}</p>
+
+    @endforeach
 </body>
 
 </html>
