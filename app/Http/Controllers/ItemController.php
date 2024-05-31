@@ -11,6 +11,6 @@ class ItemController extends Controller
     public function index()
     {
         $items = Item::all();
-        return view('app', compact('items'));
+        return view('home', compact('items'));
     }
 }
