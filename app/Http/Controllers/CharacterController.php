@@ -46,7 +46,7 @@ class CharacterController extends Controller
 
         
 
-        return to_route('characters.show', $new_character);
+        return to_route('admin.characters.show', $new_character);
     }
 
     /**
@@ -70,6 +70,17 @@ class CharacterController extends Controller
      */
     public function update(Request $request, Character $character)
     {
+
+        $request->validate([
+            'name' => 'required|max:200|min:2',
+            'description' => 'nullable|max:1000',
+            'type_id' => 'required|numeric',
+            'attack' => 'required|max:100|min:1',
+            'defence' => 'required|max:100|min:1',
+            'speed' => 'required|max:100|min:1',
+            'life' => 'required|max:100|min:1',
+        ]);
+        
         $form_data = $request->all();
 
         $character->fill($form_data);
@@ -86,6 +97,6 @@ class CharacterController extends Controller
     {
         $character->delete();
 
-        return to_route('characters.index');
+        return to_route('admin.characters.index');
     }
 }

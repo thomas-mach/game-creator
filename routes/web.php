@@ -22,7 +22,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])
+    ->name('admin.')
+    ->group(function () {
     Route::get('/', [ItemController::class, 'index']);
     Route::resource('/characters', CharacterController::class);
 });

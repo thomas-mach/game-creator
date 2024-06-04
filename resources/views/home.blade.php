@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('title', 'Home')
@@ -7,7 +8,7 @@
         <section>
             <div class="container">
                 <div class="col-auto">
-                    <h1>page index</h1>
+                    <h1>Weapons page</h1>
                 </div>
             </div>
             <div class="container">

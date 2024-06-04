@@ -5,54 +5,56 @@
 <main>
   <section>
     <div class="container">
-        <h2 class="fs-2">Crea Personaggio</h2>
+        <h2 class="fs-2">Create Character</h2>
     </div>
     <div class="container">
-        <form  action="{{ route('characters.store') }}" method="POST">
+        <form  action="{{ route('admin.characters.store') }}" method="POST">
             {{-- Cross Site Request Forgering --}}
             @csrf 
 
             <div class="mb-3">
-                <label for="name" class="form-label">nome</label>
-                <input type="text" name="name" class="form-control" id="name" placeholder="name personaggio">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" name="name" class="form-control" id="name" placeholder="name" value="{{old('name')}}">
             </div>
 
             <div class="mb-3">
-                <label for="description" class="form-label">Descrizione</label>
-                <textarea class="form-control" name="description" id="description" rows="3" placeholder="Descrizione"></textarea>
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" name="description" id="description" rows="3" placeholder="Description"> {{old('description')}}</textarea>
             </div>
 
             <div class="mb-3">
                 <label for="type_id" class="form-label">Type</label>
-                <input type="text" name="type_id" class="form-control" id="type_id" placeholder="type">
+                <input type="text" name="type_id" class="form-control" id="type_id" placeholder="type" value="{{old('type_id')}}">
             </div>
 
             
             <div class="mb-3">
-                <label for="attack" class="form-label">Attacco</label>
-                <input type="number" name="attack" class="form-control" id="attack" placeholder="">
+                <label for="attack" class="form-label">Attack</label>
+                <input type="number" name="attack" class="form-control" id="attack" placeholder="" value="{{old('attack')}}">
             </div>
             
             <div class="mb-3">
-                <label for="defence" class="form-label">difesa</label>
-                <input type="number" name="defence" class="form-control" id="defence" placeholder="">
+                <label for="defence" class="form-label">Defence</label>
+                <input type="number" name="defence" class="form-control" id="defence" placeholder="" value="{{old('defence')}}">
             </div>
 
             <div class="mb-3">
-                <label for="speed" class="form-label">velocità</label>
-                <input type="number" name="speed" class="form-control" id="speed" placeholder="">
+                <label for="speed" class="form-label">Speed</label>
+                <input type="number" name="speed" class="form-control" id="speed" placeholder="" value="{{old('speed')}}">
             </div>
 
             <div class="mb-3">
-                <label for="life" class="form-label">vita</label>
-                <input type="number" name="life" class="form-control" id="life" placeholder="">
+                <label for="life" class="form-label">Life</label>
+                <input type="number" name="life" class="form-control" id="life" placeholder="" value="{{old('life')}}">
             </div>
 
-            <button class="btn btn-primary">Crea</button>
+
+            <button class="btn btn-primary">Create</button>
+            <a class="btn btn-secondary" href="{{ route('admin.characters.index') }}">Back</a>
         </form>
 
         @if ($errors->any())
-          <div class="alert alert-danger">
+          <div class="alert alert-danger mt-3">
               <ul>
                   @foreach ($errors->all() as $error)
                       <li>{{ $error }}</li>
