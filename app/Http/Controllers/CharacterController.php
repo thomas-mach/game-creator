@@ -4,16 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Character;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class CharacterController extends Controller
+
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $characters = Character::all();
+        // $userId = Auth::id();
 
+        $user = Auth::user();
+
+        $characters =  $user->characters;
+
+        //$characters = Character::where('user_id',  $userId)->get();
+        //dd($characters);
         return view('characters.index', compact('characters'));
     }
 
@@ -22,6 +31,7 @@ class CharacterController extends Controller
      */
     public function create()
     {
+
         return view('characters.create');
     }
 
@@ -44,7 +54,7 @@ class CharacterController extends Controller
 
         $new_character = Character::create($form_data);
 
-        
+
 
         return to_route('admin.characters.index', $new_character);
     }
@@ -54,7 +64,7 @@ class CharacterController extends Controller
      */
     public function show(Character $character)
     {
-        return view('characters.show',compact('character'));
+        return view('characters.show', compact('character'));
     }
 
     /**
@@ -80,14 +90,14 @@ class CharacterController extends Controller
             'speed' => 'required|max:100|min:1',
             'life' => 'required|max:100|min:1',
         ]);
-        
+
         $form_data = $request->all();
 
         $character->fill($form_data);
 
         $character->save();
 
-        return view('characters.show', compact('character')) ;
+        return view('characters.show', compact('character'));
     }
 
     /**

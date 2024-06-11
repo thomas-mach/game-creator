@@ -14,7 +14,7 @@ class ItemSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('items')->truncate();
+        // DB::table('items')->truncate();
         $data = $this->getCSVData(__DIR__ . '/items.csv');
 
         foreach ($data as $index => $row) {
@@ -27,8 +27,7 @@ class ItemSeeder extends Seeder
                 $item->weight = $row[4];
                 $item->cost = $row[5];
                 $item->damage_dice = $row[6];
-
-
+                
                 $item->save();
             }
         }
