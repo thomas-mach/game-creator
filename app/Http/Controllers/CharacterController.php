@@ -46,7 +46,7 @@ class CharacterController extends Controller
 
         
 
-        return to_route('admin.characters.show', $new_character);
+        return to_route('admin.characters.index', $new_character);
     }
 
     /**
@@ -97,6 +97,6 @@ class CharacterController extends Controller
     {
         $character->delete();
 
-        return to_route('admin.characters.index');
+        return to_route('admin.characters.index',);
     }
 }
