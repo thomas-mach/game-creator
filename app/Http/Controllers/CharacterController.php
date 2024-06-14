@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Character;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Item;
 
 
 class CharacterController extends Controller
@@ -15,14 +16,15 @@ class CharacterController extends Controller
      */
     public function index()
     {
-        // $userId = Auth::id();
+        $userId = Auth::id();
+        // $user = Auth::user();
+        // $characters =  $user->characters;
+        $characters = Character::where('user_id',  $userId)->get();
+        // dd($characters);
 
-        $user = Auth::user();
 
-        $characters =  $user->characters;
+        // $characters = Character::all();
 
-        //$characters = Character::where('user_id',  $userId)->get();
-        //dd($characters);
         return view('characters.index', compact('characters'));
     }
 
@@ -31,8 +33,9 @@ class CharacterController extends Controller
      */
     public function create()
     {
+        $weapons = Item::all();
 
-        return view('characters.create');
+        return view('characters.create', compact('weapons'));
     }
 
     /**
@@ -51,10 +54,13 @@ class CharacterController extends Controller
         ]);
 
         $form_data = $request->all();
+        $form_data['user_id'] = Auth::id();
 
         $new_character = Character::create($form_data);
 
-
+        if ($request->has('weapons')) {
+            $new_character->items()->attach($request->weapons);
+        }
 
         return to_route('admin.characters.index', $new_character);
     }
@@ -64,6 +70,8 @@ class CharacterController extends Controller
      */
     public function show(Character $character)
     {
+
+        $character->load(['items']);
         return view('characters.show', compact('character'));
     }
 
@@ -72,7 +80,9 @@ class CharacterController extends Controller
      */
     public function edit(Character $character)
     {
-        return view('characters.edit', compact('character'));
+        $character->load('items');
+        $weapons = Item::all();
+        return view('characters.edit', compact('character', 'weapons'));
     }
 
     /**
@@ -93,9 +103,19 @@ class CharacterController extends Controller
 
         $form_data = $request->all();
 
-        $character->fill($form_data);
+        // $character->fill($form_data);
 
-        $character->save();
+        // $character->save();
+
+        $character->update($form_data);
+
+        if ($request->has('weapons')) {
+            // $post->tags()->attach($form_data['tags']);
+            $character->items()->sync($request->weapons);
+        } else {
+            $character->items()->detach();
+        }
+
 
         return view('characters.show', compact('character'));
     }
