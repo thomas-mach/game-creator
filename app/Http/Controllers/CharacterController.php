@@ -19,7 +19,7 @@ class CharacterController extends Controller
         $userId = Auth::id();
         // $user = Auth::user();
         // $characters =  $user->characters;
-        $characters = Character::where('user_id',  $userId)->get();
+        $characters = Character::where('user_id', $userId)->get();
         // dd($characters);
 
 

@@ -25,8 +25,8 @@
 
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-                    <div class="logo">
+                {{-- <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}"> --}}
+                    <div class="logo p-2">
                         <img src="https://logos-world.net/wp-content/uploads/2021/12/DnD-Symbol.png" alt="" height="72,5">
                         {{-- <svg viewBox="0 0 651 192" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 150px">
                             <g clip-path="url(#clip0)" fill="#EF3B2D">
@@ -35,7 +35,7 @@
                         </svg> --}}
                     </div>
                     {{-- config('app.name', 'Laravel') --}}
-                </a>
+                {{-- </a> --}}
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -44,8 +44,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{url('/') }}">{{ __('Weapons') }}</a>
+                        <li class="nav-item d-flex">
+                            <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
+                            <a class="nav-link"href="{{url('/all_weapons') }}" >{{ __('All Weapons') }}</a>
+                            <a class="nav-link" href="{{url('/all_characters') }}">{{ __('All Characters') }}</a>
+
+
                         </li>
                     </ul>
 
@@ -69,7 +73,7 @@
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ url('dashboard') }}">{{__('Dashboard')}}</a>
-                                <a class="dropdown-item" href="{{ route('admin.characters.index') }}">{{__('Characters')}}</a>
+                                <a class="dropdown-item" href="{{ route('admin.characters.index') }}">{{__('Your Characters')}}</a>
                                 <a class="dropdown-item" href="{{ url('profile') }}">{{__('Profile')}}</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\AllController;
+
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,16 +19,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware(['auth', 'verified'])
     ->name('admin.')
     ->group(function () {
     Route::get('/', [ItemController::class, 'index']);
-    Route::resource('/characters', CharacterController::class);
+Route::get('/all_characters', [AllController::class, 'index']);
+Route::get('/all_weapons', [AllController::class, 'weapons']);
+
+Route::resource('/characters', CharacterController::class);
+
 });
 
 

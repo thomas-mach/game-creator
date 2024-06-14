@@ -5,6 +5,7 @@
 @section('content')
 <main>
     <section>
+     
         <div class="container">
             <div class="col-auto d-flex justify-content-between py-3">
                 <h1>Characters</h1>
