@@ -23,13 +23,14 @@
                 @endforeach
             </ul>
 
-
+           @if($character->user_id === Auth::id())
             <div class="d-flex gap-3">
                 <a class="btn btn-primary" href="{{ route('admin.characters.edit', $character) }}">Edit</a>
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Delete
                 </button>
 
+              
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
@@ -58,6 +59,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </div>
