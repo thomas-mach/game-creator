@@ -39,7 +39,7 @@
                         <td>{{$character->life}}</td>
                         <td><a class="btn btn-primary" href="{{route('admin.characters.show', $character)}}">Details</a></td>
 
-                        <td>
+                        <td> 
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{$character->id}}">
                                 Delete
                             </button>
