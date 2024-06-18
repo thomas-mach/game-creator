@@ -18,9 +18,9 @@ return new class extends Migration
             $table->unsignedBigInteger('item_id');
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
 
-            // $table->Integer('qty');
+            // $table->Integer('qty')->default(null);
 
-            $table->primary(['item_id', 'character_id']);
+            $table->primary(['item_id', 'character_id','qty']);
         });
     }
 
