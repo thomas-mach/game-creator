@@ -20,7 +20,7 @@ return new class extends Migration
 
             // $table->Integer('qty')->default(null);
 
-            $table->primary(['item_id', 'character_id','qty']);
+            $table->primary(['item_id', 'character_id']);
         });
     }
 
