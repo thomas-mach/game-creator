@@ -39,8 +39,6 @@
                         <td>{{$character->speed}}</td>
                         <td>{{$character->life}}</td>
                         <td><a class="btn btn-primary" href="{{route('admin.characters.show', $character)}}">Details</a></td>
-
-                       
                     </tr>
                     @endforeach
                 </tbody>
